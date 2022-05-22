@@ -36,9 +36,7 @@ router.beforeEach((to, from, next) => {
   const requiereAutenticarse = to.matched.some(
     (ruta) => ruta.meta.requiereAutenticarse
   );
-  const usuarioAutenticado = store.esAutenticado;
-  console.log(store);
-  if (requiereAutenticarse && !usuarioAutenticado) {
+  if (requiereAutenticarse && !store.esAutenticado) {
     next({ name: "login" });
   } else {
     next();
