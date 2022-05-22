@@ -1,17 +1,40 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <div>
+      Aunteticado
+      <div v-if="autenticado">Si</div>
+      <div v-else>No</div>
+      <button class="but" @click="signOut">Sign out</button>
+    </div>
+    <div id="nav">
+      <router-link to="/">Home</router-link>|
+      <router-link to="/login">Login</router-link>|
+      <router-link to="/secret">Secret</router-link>
+    </div>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import { useStore } from "./store/store";
 
 export default {
   name: "App",
-  components: {
-    HelloWorld,
+  setup() {
+    const store = useStore();
+    return { store };
+  },
+
+  methods: {
+    signOut() {
+      this.store.autenticar(false);
+      this.$router.replace({ name: "login" });
+    },
+  },
+  computed: {
+    autenticado() {
+      return this.store.esAutenticado;
+    },
   },
 };
 </script>
