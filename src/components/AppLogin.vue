@@ -1,13 +1,7 @@
 <template>
   <div>
     <h3>Login</h3>
-    <form @submit.prevent="pressed">
-      <div class="login">
-        <input type="text" placeholder="login" v-model="email" />
-      </div>
-      <div class="password">
-        <input type="password" placeholder="password" v-model="password" />
-      </div>
+    <form @submit.prevent="login">
       <button>Login</button>
     </form>
     <div class="error" v-if="error">{{ error.message }}</div>
@@ -23,13 +17,11 @@ export default {
   },
   data() {
     return {
-      email: "",
-      password: "",
       error: "",
     };
   },
   methods: {
-    pressed() {
+    login() {
       try {
         //si esta todo bien
         this.store.autenticar(true);

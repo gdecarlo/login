@@ -33,9 +33,7 @@ Vue.use(VueRouter);
 
 router.beforeEach((to, from, next) => {
   const store = useStore(pinia);
-  const requiereAutenticarse = to.matched.some(
-    (ruta) => ruta.meta.requiereAutenticarse
-  );
+  const requiereAutenticarse = to.meta.requiereAutenticarse;
   if (requiereAutenticarse && !store.esAutenticado) {
     next({ name: "login" });
   } else {

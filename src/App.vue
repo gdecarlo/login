@@ -1,10 +1,8 @@
 <template>
   <div id="app">
     <div>
-      Aunteticado
-      <div v-if="autenticado">Si</div>
-      <div v-else>No</div>
-      <button class="but" @click="signOut">Sign out</button>
+      <p>Autenticado: {{ autenticado ? "Si" : "No" }}</p>
+      <button v-if="autenticado" class="but" @click="signOut">Salir</button>
     </div>
     <div id="nav">
       <router-link to="/">Home</router-link>|
